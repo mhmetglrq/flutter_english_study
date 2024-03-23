@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_english_study/config/extensions/context_extension.dart';
 import 'package:flutter_english_study/config/items/app_colors.dart';
+import 'package:flutter_english_study/config/routes/route_names.dart';
 import 'package:flutter_english_study/config/utility/enum/svg_enum.dart';
 import 'package:flutter_english_study/features/home/repository/home_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -45,7 +46,10 @@ class _HomeState extends ConsumerState<Home> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, RouteNames.groupList,
+                                arguments: {"area": "allGroups"});
+                          },
                           child: Column(
                             children: [
                               Text(
@@ -89,7 +93,13 @@ class _HomeState extends ConsumerState<Home> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              RouteNames.groupList,
+                              arguments: {"area": "myGroups"},
+                            );
+                          },
                           child: Column(
                             children: [
                               Text(
