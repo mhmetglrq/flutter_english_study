@@ -7,14 +7,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../config/routes/route_names.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+class SignUp extends StatefulWidget {
+  const SignUp({super.key});
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignUpState extends State<SignUp> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -145,23 +145,23 @@ class _SignInState extends State<SignIn> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: const Text("Sign In"),
+                            child: const Text("Sign Up"),
                           ),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Don't have an account?",
+                              "Do you have an account?",
                               style: context.textTheme.titleMedium?.copyWith(
                                 color: AppColors.whiteColor.withOpacity(0.5),
                               ),
                             ),
                             TextButton(
                               onPressed: () => Navigator.pushNamed(
-                                  context, RouteNames.signUp),
+                                  context, RouteNames.signIn),
                               child: Text(
-                                "Sign Up",
+                                "Sign In",
                                 style: context.textTheme.titleMedium?.copyWith(
                                   color: AppColors.whiteColor,
                                 ),
