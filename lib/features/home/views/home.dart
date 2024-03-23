@@ -44,85 +44,93 @@ class _HomeState extends ConsumerState<Home> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Column(
-                          children: [
-                            Text(
-                              "Total Groups",
-                              style: context.textTheme.titleMedium?.copyWith(
-                                color: AppColors.lightPurple,
+                        GestureDetector(
+                          onTap: () {},
+                          child: Column(
+                            children: [
+                              Text(
+                                "Total Groups",
+                                style: context.textTheme.titleMedium?.copyWith(
+                                  color: AppColors.lightPurple,
+                                ),
                               ),
-                            ),
-                            ref.watch(getAllGroupsFutureProvider).when(
-                                  data: (value) {
-                                    return Row(
-                                      children: [
-                                        Text(
-                                          value.length.toString(),
-                                          style: context.textTheme.titleMedium
-                                              ?.copyWith(
-                                            color: AppColors.lightPurple,
-                                            fontSize:
-                                                context.dynamicHeight(0.05),
+                              ref.watch(getAllGroupsFutureProvider).when(
+                                    data: (value) {
+                                      return Row(
+                                        children: [
+                                          Text(
+                                            value.length.toString(),
+                                            style: context.textTheme.titleMedium
+                                                ?.copyWith(
+                                              color: AppColors.lightPurple,
+                                              fontSize:
+                                                  context.dynamicHeight(0.05),
+                                            ),
                                           ),
-                                        ),
-                                        SvgPicture.asset(
-                                          SvgConstants.group.getSvg,
-                                          height: context.dynamicHeight(0.035),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                  loading: () =>
-                                      const CircularProgressIndicator(),
-                                  error: (error, stack) => Text(
-                                    error.toString(),
-                                    style:
-                                        context.textTheme.titleMedium?.copyWith(
-                                      color: AppColors.lightPurple,
+                                          SvgPicture.asset(
+                                            SvgConstants.group.getSvg,
+                                            height:
+                                                context.dynamicHeight(0.035),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                    loading: () =>
+                                        const CircularProgressIndicator(),
+                                    error: (error, stack) => Text(
+                                      error.toString(),
+                                      style: context.textTheme.titleMedium
+                                          ?.copyWith(
+                                        color: AppColors.lightPurple,
+                                      ),
                                     ),
                                   ),
-                                ),
-                          ],
+                            ],
+                          ),
                         ),
-                        Column(
-                          children: [
-                            Text(
-                              "Total Groups",
-                              style: context.textTheme.titleMedium?.copyWith(
-                                color: AppColors.lightPurple,
+                        GestureDetector(
+                          onTap: () {},
+                          child: Column(
+                            children: [
+                              Text(
+                                "My Groups",
+                                style: context.textTheme.titleMedium?.copyWith(
+                                  color: AppColors.lightPurple,
+                                ),
                               ),
-                            ),
-                            ref.watch(getMyGroupsFutureProvider).when(
-                                  data: (value) {
-                                    return Row(
-                                      children: [
-                                        Text(
-                                          value.length.toString(),
-                                          style: context.textTheme.titleMedium
-                                              ?.copyWith(
-                                            color: AppColors.lightPurple,
-                                            fontSize:
-                                                context.dynamicHeight(0.05),
+                              ref.watch(getMyGroupsFutureProvider).when(
+                                    data: (value) {
+                                      return Row(
+                                        children: [
+                                          Text(
+                                            value.length.toString(),
+                                            style: context.textTheme.titleMedium
+                                                ?.copyWith(
+                                              color: AppColors.lightPurple,
+                                              fontSize:
+                                                  context.dynamicHeight(0.05),
+                                            ),
                                           ),
-                                        ),
-                                        SvgPicture.asset(
-                                          SvgConstants.group.getSvg,
-                                          height: context.dynamicHeight(0.035),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                  loading: () =>
-                                      const CircularProgressIndicator(),
-                                  error: (error, stack) => Text(
-                                    error.toString(),
-                                    style:
-                                        context.textTheme.titleMedium?.copyWith(
-                                      color: AppColors.lightPurple,
+                                          SvgPicture.asset(
+                                            SvgConstants.group.getSvg,
+                                            height:
+                                                context.dynamicHeight(0.035),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                    loading: () =>
+                                        const CircularProgressIndicator(),
+                                    error: (error, stack) => Text(
+                                      error.toString(),
+                                      style: context.textTheme.titleMedium
+                                          ?.copyWith(
+                                        color: AppColors.lightPurple,
+                                      ),
                                     ),
                                   ),
-                                ),
-                          ],
+                            ],
+                          ),
                         ),
                       ],
                     ),
