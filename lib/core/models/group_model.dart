@@ -7,7 +7,7 @@ class GroupModel {
   String? uid;
   String? title;
   String? description;
-  List<String>? members;
+  List<dynamic>? members;
   GroupModel({
     this.uid,
     this.title,
@@ -19,7 +19,7 @@ class GroupModel {
     String? uid,
     String? title,
     String? description,
-    List<String>? members,
+    List<dynamic>? members,
   }) {
     return GroupModel(
       uid: uid ?? this.uid,
@@ -45,7 +45,7 @@ class GroupModel {
       description:
           map['description'] != null ? map['description'] as String : null,
       members: map['members'] != null
-          ? List<String>.from((map['members'] as List<String>))
+          ? List<dynamic>.from((map['members'] as List<dynamic>))
           : null,
     );
   }

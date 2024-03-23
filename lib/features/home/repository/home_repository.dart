@@ -6,7 +6,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final getMyGroupsFutureProvider = FutureProvider<List<GroupModel>>(
   (ref) async {
     final homeRepository = ref.read(homeRepositoryProvider);
-    return homeRepository.getMyGroups();
+    var value = await homeRepository.getMyGroups();
+    print(value);
+    return await homeRepository.getMyGroups();
   },
 );
 
@@ -56,6 +58,7 @@ class HomeRepository {
           .then(
         (value) {
           for (var doc in value.docs) {
+            print(doc.data());
             groups.add(GroupModel.fromMap(doc.data()));
           }
         },

@@ -39,6 +39,7 @@ dependencies:
   cloud_firestore: ^4.15.8
   flutter_svg: ^2.0.10+1
   flutter_riverpod: ^2.5.1
+  uuid: ^4.3.3
 
 dev_dependencies:
   flutter_test:
