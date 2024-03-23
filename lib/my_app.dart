@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: RouteNames.signIn,
       onGenerateRoute: AppRouter.generateRoute,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
