@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_english_study/config/routes/route_names.dart';
 import 'package:flutter_english_study/features/auth/views/sign_in.dart';
 import 'package:flutter_english_study/features/auth/views/sign_up.dart';
+import 'package:flutter_english_study/features/home/views/home.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -12,6 +13,8 @@ class AppRouter {
         return _materialRoute(const SignIn());
       case RouteNames.signUp:
         return _materialRoute(const SignUp());
+      case RouteNames.home:
+        return _materialRoute(const Home());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
