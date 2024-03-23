@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_english_study/config/routes/route_names.dart';
 import 'package:flutter_english_study/features/auth/views/sign_in.dart';
 import 'package:flutter_english_study/features/auth/views/sign_up.dart';
+import 'package:flutter_english_study/features/group/views/group_list.dart';
 import 'package:flutter_english_study/features/home/views/home.dart';
 
 class AppRouter {
@@ -15,6 +16,8 @@ class AppRouter {
         return _materialRoute(const SignUp());
       case RouteNames.home:
         return _materialRoute(const Home());
+      case RouteNames.groupList:
+        return _materialRoute(const GroupList());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
