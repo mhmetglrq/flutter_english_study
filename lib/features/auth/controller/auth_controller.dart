@@ -12,12 +12,12 @@ class AuthController {
 
   AuthController({required this.authRepository});
 
-  Future<void> signInWithEmailAndPassword({
+  Future<UserCredential?> signInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
     try {
-      await authRepository.signInWithEmailAndPassword(
+      return await authRepository.signInWithEmailAndPassword(
           email: email, password: password);
     } catch (e) {
       throw Exception(e);

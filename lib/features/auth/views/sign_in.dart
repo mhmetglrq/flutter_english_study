@@ -151,12 +151,20 @@ class _SignInState extends State<SignIn> {
                                           email: _emailController.text,
                                           password: _passwordController.text,
                                         )
-                                        .whenComplete(
-                                          () => Navigator.pushNamed(
-                                            context,
-                                            RouteNames.home,
+                                        .then((value) {
+                                      if (value?.user != null) {
+                                        Navigator.pushNamed(
+                                            context, RouteNames.home);
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                            content: Text(
+                                                "Invalid email or password"),
                                           ),
                                         );
+                                      }
+                                    });
                                   }
                                 },
                                 color: AppColors.whiteColor,

@@ -14,12 +14,13 @@ class AuthRepository {
 
   AuthRepository({required this.firestore, required this.auth});
 
-  Future<void> signInWithEmailAndPassword({
+  Future<UserCredential?> signInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
     try {
-      await auth.signInWithEmailAndPassword(email: email, password: password);
+      return await auth.signInWithEmailAndPassword(
+          email: email, password: password);
     } catch (e) {
       throw Exception(e);
     }
