@@ -34,6 +34,7 @@ class GroupList extends ConsumerWidget {
                           child: ListView.builder(
                             itemCount: groups.length,
                             itemBuilder: (context, index) {
+                              final group = groups[index];
                               return Card(
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -53,7 +54,7 @@ class GroupList extends ConsumerWidget {
                                   leading: CircleAvatar(
                                     backgroundColor: AppColors.lightPurple,
                                     child: Text(
-                                      "1",
+                                      "${group.members?.length}",
                                       style: context.textTheme.labelMedium
                                           ?.copyWith(
                                         color: AppColors.whiteColor,
@@ -62,7 +63,7 @@ class GroupList extends ConsumerWidget {
                                     ),
                                   ),
                                   title: Text(
-                                    "Title",
+                                    "${group.title}",
                                     style:
                                         context.textTheme.labelMedium?.copyWith(
                                       color: AppColors.lightPurple,
@@ -70,7 +71,7 @@ class GroupList extends ConsumerWidget {
                                     ),
                                   ),
                                   subtitle: Text(
-                                    "Description",
+                                    "${group.description}",
                                     style:
                                         context.textTheme.bodyMedium?.copyWith(
                                       color: AppColors.lightPurple,
