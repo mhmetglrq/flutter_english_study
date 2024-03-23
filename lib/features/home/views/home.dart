@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_english_study/config/extensions/context_extension.dart';
 import 'package:flutter_english_study/config/items/app_colors.dart';
 import 'package:flutter_english_study/config/utility/enum/svg_enum.dart';
+import 'package:flutter_english_study/features/home/repository/home_repository.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class Home extends StatefulWidget {
+class Home extends ConsumerStatefulWidget {
   const Home({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  ConsumerState<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends ConsumerState<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,22 +52,36 @@ class _HomeState extends State<Home> {
                                 color: AppColors.lightPurple,
                               ),
                             ),
-                            Row(
-                              children: [
-                                Text(
-                                  "10",
-                                  style:
-                                      context.textTheme.titleMedium?.copyWith(
-                                    color: AppColors.lightPurple,
-                                    fontSize: context.dynamicHeight(0.05),
+                            ref.watch(getAllGroupsFutureProvider).when(
+                                  data: (value) {
+                                    return Row(
+                                      children: [
+                                        Text(
+                                          value.length.toString(),
+                                          style: context.textTheme.titleMedium
+                                              ?.copyWith(
+                                            color: AppColors.lightPurple,
+                                            fontSize:
+                                                context.dynamicHeight(0.05),
+                                          ),
+                                        ),
+                                        SvgPicture.asset(
+                                          SvgConstants.group.getSvg,
+                                          height: context.dynamicHeight(0.035),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                  loading: () =>
+                                      const CircularProgressIndicator(),
+                                  error: (error, stack) => Text(
+                                    error.toString(),
+                                    style:
+                                        context.textTheme.titleMedium?.copyWith(
+                                      color: AppColors.lightPurple,
+                                    ),
                                   ),
                                 ),
-                                SvgPicture.asset(
-                                  SvgConstants.group.getSvg,
-                                  height: context.dynamicHeight(0.035),
-                                ),
-                              ],
-                            ),
                           ],
                         ),
                         Column(
@@ -76,24 +92,38 @@ class _HomeState extends State<Home> {
                                 color: AppColors.lightPurple,
                               ),
                             ),
-                            Row(
-                              children: [
-                                Text(
-                                  "10",
-                                  style:
-                                      context.textTheme.titleMedium?.copyWith(
-                                    color: AppColors.lightPurple,
-                                    fontSize: context.dynamicHeight(0.05),
+                            ref.watch(getMyGroupsFutureProvider).when(
+                                  data: (value) {
+                                    return Row(
+                                      children: [
+                                        Text(
+                                          value.length.toString(),
+                                          style: context.textTheme.titleMedium
+                                              ?.copyWith(
+                                            color: AppColors.lightPurple,
+                                            fontSize:
+                                                context.dynamicHeight(0.05),
+                                          ),
+                                        ),
+                                        SvgPicture.asset(
+                                          SvgConstants.group.getSvg,
+                                          height: context.dynamicHeight(0.035),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                  loading: () =>
+                                      const CircularProgressIndicator(),
+                                  error: (error, stack) => Text(
+                                    error.toString(),
+                                    style:
+                                        context.textTheme.titleMedium?.copyWith(
+                                      color: AppColors.lightPurple,
+                                    ),
                                   ),
                                 ),
-                                SvgPicture.asset(
-                                  SvgConstants.group.getSvg,
-                                  height: context.dynamicHeight(0.035),
-                                ),
-                              ],
-                            ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),

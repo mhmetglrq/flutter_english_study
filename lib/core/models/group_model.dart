@@ -7,25 +7,25 @@ class GroupModel {
   String? uid;
   String? title;
   String? description;
-  List<String>? userList;
+  List<String>? members;
   GroupModel({
     this.uid,
     this.title,
     this.description,
-    this.userList,
+    this.members,
   });
 
   GroupModel copyWith({
     String? uid,
     String? title,
     String? description,
-    List<String>? userList,
+    List<String>? members,
   }) {
     return GroupModel(
       uid: uid ?? this.uid,
       title: title ?? this.title,
       description: description ?? this.description,
-      userList: userList ?? this.userList,
+      members: members ?? this.members,
     );
   }
 
@@ -34,7 +34,7 @@ class GroupModel {
       'uid': uid,
       'title': title,
       'description': description,
-      'userList': userList,
+      'members': members,
     };
   }
 
@@ -44,8 +44,8 @@ class GroupModel {
       title: map['title'] != null ? map['title'] as String : null,
       description:
           map['description'] != null ? map['description'] as String : null,
-      userList: map['userList'] != null
-          ? List<String>.from((map['userList'] as List<String>))
+      members: map['members'] != null
+          ? List<String>.from((map['members'] as List<String>))
           : null,
     );
   }
@@ -57,7 +57,7 @@ class GroupModel {
 
   @override
   String toString() {
-    return 'GroupModel(uid: $uid, title: $title, description: $description, userList: $userList)';
+    return 'GroupModel(uid: $uid, title: $title, description: $description, members: $members)';
   }
 
   @override
@@ -67,7 +67,7 @@ class GroupModel {
     return other.uid == uid &&
         other.title == title &&
         other.description == description &&
-        listEquals(other.userList, userList);
+        listEquals(other.members, members);
   }
 
   @override
@@ -75,6 +75,6 @@ class GroupModel {
     return uid.hashCode ^
         title.hashCode ^
         description.hashCode ^
-        userList.hashCode;
+        members.hashCode;
   }
 }
