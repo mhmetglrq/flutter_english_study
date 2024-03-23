@@ -3,6 +3,8 @@ import 'package:flutter_english_study/config/extensions/context_extension.dart';
 import 'package:flutter_english_study/config/items/app_colors.dart';
 import 'package:flutter_english_study/config/utility/enum/image_enum.dart';
 import 'package:flutter_english_study/config/utility/enum/svg_enum.dart';
+import 'package:flutter_english_study/features/auth/controller/auth_controller.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../config/routes/route_names.dart';
@@ -135,18 +137,37 @@ class _SignInState extends State<SignIn> {
                             ),
                           ),
                         ),
-                        Container(
-                          padding: context.paddingVerticalLow,
-                          alignment: Alignment.center,
-                          child: MaterialButton(
-                            onPressed: () {},
-                            color: AppColors.whiteColor,
-                            minWidth: context.dynamicWidth(0.5),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: const Text("Sign In"),
-                          ),
+                        Consumer(
+                          builder: (context, ref, child) {
+                            return Container(
+                              padding: context.paddingVerticalLow,
+                              alignment: Alignment.center,
+                              child: MaterialButton(
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    ref
+                                        .read(authControllerProvider)
+                                        .signInWithEmailAndPassword(
+                                          email: _emailController.text,
+                                          password: _passwordController.text,
+                                        )
+                                        .whenComplete(
+                                          () => Navigator.pushNamed(
+                                            context,
+                                            RouteNames.home,
+                                          ),
+                                        );
+                                  }
+                                },
+                                color: AppColors.whiteColor,
+                                minWidth: context.dynamicWidth(0.5),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: const Text("Sign In"),
+                              ),
+                            );
+                          },
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
