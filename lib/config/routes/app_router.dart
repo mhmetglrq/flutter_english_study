@@ -3,6 +3,7 @@ import 'package:flutter_english_study/config/routes/route_names.dart';
 import 'package:flutter_english_study/features/auth/views/sign_in.dart';
 import 'package:flutter_english_study/features/auth/views/sign_up.dart';
 import 'package:flutter_english_study/features/group/views/create_group.dart';
+import 'package:flutter_english_study/features/group/views/group_details.dart';
 import 'package:flutter_english_study/features/group/views/group_list.dart';
 import 'package:flutter_english_study/features/home/views/home.dart';
 
@@ -25,6 +26,14 @@ class AppRouter {
         return _materialRoute(
           GroupList(
             area: area,
+          ),
+        );
+      case RouteNames.groupDetail:
+        final args = settings.arguments as Map<String, dynamic>;
+        final groupUid = args['groupUid'];
+        return _materialRoute(
+          GroupDetail(
+            groupUid: groupUid,
           ),
         );
       default:

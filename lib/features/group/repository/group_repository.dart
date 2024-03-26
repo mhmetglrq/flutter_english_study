@@ -38,4 +38,9 @@ class GroupRepository {
     final userDoc = await firestore.collection('users').doc(user!.uid).get();
     return UserModel.fromMap(userDoc.data() as Map<String, dynamic>);
   }
+
+  Future<GroupModel> getGroup({required String uid}) async {
+    final groupDoc = await firestore.collection('groups').doc(uid).get();
+    return GroupModel.fromMap(groupDoc.data() as Map<String, dynamic>);
+  }
 }
