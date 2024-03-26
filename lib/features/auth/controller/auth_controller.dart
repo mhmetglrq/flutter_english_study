@@ -44,9 +44,9 @@ class AuthController {
     }
   }
 
-  Future<User?> get currentUser async {
+  User? get currentUser {
     try {
-      return await authRepository.currentUser;
+      return authRepository.currentUser;
     } catch (e) {
       throw Exception(e);
     }
