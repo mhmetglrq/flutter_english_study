@@ -19,4 +19,12 @@ class HomeController {
   Future<void> getMyGroups() async {
     await homeRepository.getMyGroups();
   }
+
+  Future<void> joinGroup(String groupUid) async {
+    await homeRepository.joinGroup(groupUid);
+  }
+
+  Future<void> signOut() async {
+    await homeRepository.signOut();
+  }
 }
