@@ -215,7 +215,7 @@ class _HomeState extends ConsumerState<Home> {
                       Padding(
                         padding: context.paddingBottomLow,
                         child: Text(
-                          "Total Groups",
+                          "Join Group",
                           style: context.textTheme.titleMedium?.copyWith(
                             color: AppColors.lightPurple,
                           ),
