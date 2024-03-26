@@ -3,6 +3,7 @@ import 'package:flutter_english_study/config/extensions/context_extension.dart';
 import 'package:flutter_english_study/config/items/app_colors.dart';
 import 'package:flutter_english_study/config/routes/route_names.dart';
 import 'package:flutter_english_study/config/utility/enum/svg_enum.dart';
+import 'package:flutter_english_study/features/home/controller/home_controller.dart';
 import 'package:flutter_english_study/features/home/repository/home_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,12 +16,28 @@ class Home extends ConsumerStatefulWidget {
 }
 
 class _HomeState extends ConsumerState<Home> {
+  TextEditingController groupUidController = TextEditingController();
+
+  @override
+  void dispose() {
+    groupUidController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
-      ),
+          title: const Text('Home'),
+          leading: IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              ref.read(homeControllerProvider).signOut().whenComplete(() {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, RouteNames.signIn, (route) => false);
+              });
+            },
+          )),
       body: SingleChildScrollView(
         child: Padding(
           padding: context.paddingAllDefault,
@@ -228,6 +245,7 @@ class _HomeState extends ConsumerState<Home> {
                               style: context.textTheme.titleMedium?.copyWith(
                                 color: AppColors.whiteColor,
                               ),
+                              controller: groupUidController,
                               cursorColor: AppColors.whiteColor,
                               decoration: InputDecoration(
                                 hintText: "Group Name",
@@ -250,7 +268,17 @@ class _HomeState extends ConsumerState<Home> {
                           Padding(
                             padding: context.paddingLeftLow,
                             child: GestureDetector(
-                              onTap: () {},
+                              onTap: () async {
+                                await ref
+                                    .read(homeControllerProvider)
+                                    .joinGroup(groupUidController.text)
+                                    .whenComplete(() {
+                                  groupUidController.clear();
+
+                                  ref.refresh(getMyGroupsFutureProvider);
+                                  ref.refresh(getAllGroupsFutureProvider);
+                                });
+                              },
                               child: Material(
                                 child: Container(
                                   height: context.dynamicHeight(0.065),

@@ -65,4 +65,18 @@ class HomeRepository {
       throw (Exception(e.toString()));
     }
   }
+
+  Future<void> joinGroup(String groupUid) async {
+    try {
+      await firebaseFirestore.collection("groups").doc(groupUid).update({
+        "members": FieldValue.arrayUnion([auth.currentUser!.uid])
+      });
+    } catch (e) {
+      throw (Exception(e.toString()));
+    }
+  }
+
+  Future<void> signOut() async {
+    await auth.signOut();
+  }
 }
