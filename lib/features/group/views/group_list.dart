@@ -7,6 +7,7 @@ import 'package:flutter_english_study/features/home/repository/home_repository.d
 import 'package:flutter_english_study/features/home/views/home.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:share_plus/share_plus.dart';
 
 class GroupList extends ConsumerWidget {
   const GroupList({super.key, required this.area});
@@ -82,21 +83,25 @@ class GroupList extends ConsumerWidget {
                                   trailing: GestureDetector(
                                     child: SvgPicture.asset(
                                         SvgConstants.more.getSvg),
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => const Home(),
+                                    onTap: () async {
+                                      await Share.share(
+                                        'Join my group ${group.title} on Flutter English Study App. Group Code: ${group.uid}',
+                                        subject: 'Group Invitation',
+                                        sharePositionOrigin: Rect.fromCenter(
+                                          center: Offset.zero,
+                                          width: 0,
+                                          height: 0,
                                         ),
                                       );
                                     },
                                   ),
                                   onTap: () {
-                                    Navigator.push(
+                                    Navigator.pushNamed(
                                       context,
-                                      MaterialPageRoute(
-                                        builder: (context) => const Home(),
-                                      ),
+                                      RouteNames.groupDetail,
+                                      arguments: {
+                                        'groupUid': group.uid,
+                                      },
                                     );
                                   },
                                 ),

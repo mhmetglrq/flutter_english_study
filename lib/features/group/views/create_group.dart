@@ -222,6 +222,10 @@ class _CreateGroupState extends ConsumerState<CreateGroup> {
                 padding: context.paddingVerticalHigh,
                 child: MaterialButton(
                   onPressed: () async {
+                    String creatorUid = (await ref
+                            .read(groupControllerProvider)
+                            .getCurrentUser())
+                        .uid!;
                     await ref
                         .read(groupControllerProvider)
                         .createGroup(
@@ -229,6 +233,7 @@ class _CreateGroupState extends ConsumerState<CreateGroup> {
                             title: _titleController.text,
                             description: _descriptionController.text,
                             members: memberUids,
+                            creatorUid: creatorUid,
                           ),
                         )
                         .whenComplete(() => Navigator.pop(context));
