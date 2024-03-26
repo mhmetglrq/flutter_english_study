@@ -61,7 +61,7 @@ class AuthRepository {
     }
   }
 
-  Future<User?> get currentUser async {
+  User? get currentUser {
     return auth.currentUser;
   }
 }
