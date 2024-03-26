@@ -8,11 +8,13 @@ class GroupModel {
   String? title;
   String? description;
   List<dynamic>? members;
+  String? creatorUid;
   GroupModel({
     this.uid,
     this.title,
     this.description,
     this.members,
+    this.creatorUid,
   });
 
   GroupModel copyWith({
@@ -20,12 +22,14 @@ class GroupModel {
     String? title,
     String? description,
     List<dynamic>? members,
+    String? creatorUid,
   }) {
     return GroupModel(
       uid: uid ?? this.uid,
       title: title ?? this.title,
       description: description ?? this.description,
       members: members ?? this.members,
+      creatorUid: creatorUid ?? this.creatorUid,
     );
   }
 
@@ -35,6 +39,7 @@ class GroupModel {
       'title': title,
       'description': description,
       'members': members,
+      'creatorUid': creatorUid,
     };
   }
 
@@ -47,6 +52,8 @@ class GroupModel {
       members: map['members'] != null
           ? List<dynamic>.from((map['members'] as List<dynamic>))
           : null,
+      creatorUid:
+          map['creatorUid'] != null ? map['creatorUid'] as String : null,
     );
   }
 
@@ -57,7 +64,7 @@ class GroupModel {
 
   @override
   String toString() {
-    return 'GroupModel(uid: $uid, title: $title, description: $description, members: $members)';
+    return 'GroupModel(uid: $uid, title: $title, description: $description, members: $members, creatorUid: $creatorUid)';
   }
 
   @override
@@ -67,7 +74,8 @@ class GroupModel {
     return other.uid == uid &&
         other.title == title &&
         other.description == description &&
-        listEquals(other.members, members);
+        listEquals(other.members, members) &&
+        other.creatorUid == creatorUid;
   }
 
   @override
@@ -75,6 +83,7 @@ class GroupModel {
     return uid.hashCode ^
         title.hashCode ^
         description.hashCode ^
-        members.hashCode;
+        members.hashCode ^
+        creatorUid.hashCode;
   }
 }

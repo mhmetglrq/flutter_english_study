@@ -9,6 +9,12 @@ final groupControllerProvider = Provider((ref) => GroupController(
       ref: ref,
     ));
 
+final getGroupFutureProvider =
+    FutureProvider.autoDispose.family<GroupModel, String>((ref, uid) async {
+  final group = await ref.read(groupControllerProvider).getGroup(uid: uid);
+  return group;
+});
+
 class GroupController {
   final GroupRepository groupRepository;
   ProviderRef ref;
@@ -27,5 +33,9 @@ class GroupController {
 
   Future<UserModel> getCurrentUser() async {
     return await groupRepository.getCurrentUser();
+  }
+
+  Future<GroupModel> getGroup({required String uid}) async {
+    return await groupRepository.getGroup(uid: uid);
   }
 }
